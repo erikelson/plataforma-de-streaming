@@ -1,5 +1,6 @@
 package br.com.streaming.plataforma.utilitario;
 
+import br.com.streaming.plataforma.enums.GeneroAudiobook;
 import br.com.streaming.plataforma.enums.GeneroMusica;
 import br.com.streaming.plataforma.excecoes.EntradaInvalidaException;
 
@@ -76,6 +77,21 @@ public class Utilitarios {
         while (generoEscolhido == null) {
             try {
                 generoEscolhido = (GeneroMusica) JOptionPane.showInputDialog(null, perguntar, titulo, JOptionPane.PLAIN_MESSAGE, null, GeneroMusica.values(), null);
+                if (generoEscolhido == null) {
+                    throw new EntradaInvalidaException("Você deve escolher um valor válido");
+                }
+            } catch (EntradaInvalidaException e) {
+                exibirMessagem(e.getMessage());
+            }
+        }
+        return generoEscolhido;
+    }
+
+    public static GeneroAudiobook perguntarGeneroAudibook(String titulo, String perguntar) {
+        GeneroAudiobook generoEscolhido = null;
+        while (generoEscolhido == null) {
+            try {
+                generoEscolhido = (GeneroAudiobook) JOptionPane.showInputDialog(null, perguntar, titulo, JOptionPane.PLAIN_MESSAGE, null, GeneroAudiobook.values(), null);
                 if (generoEscolhido == null) {
                     throw new EntradaInvalidaException("Você deve escolher um valor válido");
                 }

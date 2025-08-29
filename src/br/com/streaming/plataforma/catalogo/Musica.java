@@ -1,6 +1,7 @@
 package br.com.streaming.plataforma.catalogo;
 
 import br.com.streaming.plataforma.enums.GeneroMusica;
+import br.com.streaming.plataforma.excecoes.NenhumaMidiaEncontradaException;
 import br.com.streaming.plataforma.utilitario.Utilitarios;
 
 public class Musica extends Midia {
@@ -21,10 +22,36 @@ public class Musica extends Midia {
             Utilitarios.exibirMessagem("Essa música já existe no catálogo!!!\n" + musica);
         }
     }
+    public static void removerMusica(int tipo) {
+        try {
+            boolean removido = Catalogo.removerMidia(tipo);
+            if (removido) {
+                Utilitarios.exibirMessagem("Música excluída do catálogo!!!");
+            } else {
+                Utilitarios.exibirMessagem("Não existe música com esse título no catálogo!!!");
+            }
+        } catch (NenhumaMidiaEncontradaException e) {
+            Utilitarios.exibirMessagem(e.getMessage());
+        }
 
+    }
     public static void procurarMusicaPorTitulo(String titulo){
         Catalogo midias = new Catalogo();
         System.out.println(midias);
+    }
+
+    public static void procurarMusicaPorTituloArtistaGenero(int tipo) {
+        try {
+            String midia = Catalogo.buscarMidia(tipo);
+            if (!(midia.equalsIgnoreCase(""))) {
+                Utilitarios.exibirMessagem(midia);
+            } else {
+                Utilitarios.exibirMessagem("Não encontramos nenhuma música com termo pesquisado!!!");
+            }
+        } catch (NenhumaMidiaEncontradaException e) {
+            Utilitarios.exibirMessagem(e.getMessage());
+        }
+
     }
 
     @Override

@@ -1,5 +1,6 @@
 package br.com.streaming.plataforma.utilitario;
 
+import br.com.streaming.plataforma.catalogo.Audiobook;
 import br.com.streaming.plataforma.catalogo.Catalogo;
 import br.com.streaming.plataforma.catalogo.Musica;
 import br.com.streaming.plataforma.excecoes.NenhumUsuarioCadastradoException;
@@ -80,10 +81,10 @@ public class Menu {
                     Catalogo.listarMidias();
                     break;
                 case 3:
-                    System.out.println("Remover por titulo");
+                    exibirSubMenuRemoverMidiaPorTitulo();
                     break;
                 case 4:
-                    System.out.println("Procurar música");
+                    exibirSubMenuProcurarMusica();
                     break;
                 case 5:
                     break;
@@ -105,12 +106,46 @@ public class Menu {
                     System.out.println("add podcast");
                     break;
                 case 3:
-                    System.out.println("add audiobook");
+                    Audiobook.adicionarAudiobook();
                     break;
                 default:
                     Utilitarios.exibirMessagem("Tipo de mídia inválido, volte e tente novamente!");
             }
 
+    }
+
+    private static void exibirSubMenuRemoverMidiaPorTitulo() {
+        int tipoMediaRemover = Utilitarios.inputOpcaoInt("Remover mídia", "\nEscolha o tipo de mídia que deseja remover\n\n  1 - Música\n  2 - Podcast\n  3 - Audiobook\n\nEscolha uma opção:");
+        switch (tipoMediaRemover) {
+            case 1:
+                Musica.removerMusica(tipoMediaRemover);
+                break;
+            case 2:
+                //Podcast.removerPodcast(tipoMediaRemover);
+                break;
+            case 3:
+                Audiobook.removerAudiobook(tipoMediaRemover);
+                break;
+            default:
+                Utilitarios.exibirMessagem("Tipo de mídia inválido, volte e tente novamente!");
+        }
+    }
+
+    private static void exibirSubMenuProcurarMusica() {
+        int tipoMediaProcurada = Utilitarios.inputOpcaoInt("Procurar música no catálogo", "\nEscolha a opção que deseja procurar a música\n\n  1 - Buscar música por título\n  2 - Buscar música por artista\n  3 - Buscar música por gênero\n\nEscolha uma opção:");
+        switch (tipoMediaProcurada) {
+            case 1:
+                Musica.procurarMusicaPorTituloArtistaGenero(tipoMediaProcurada);
+                break;
+            case 2:
+                Musica.procurarMusicaPorTituloArtistaGenero(tipoMediaProcurada);
+                break;
+            case 3:
+                Musica.procurarMusicaPorTituloArtistaGenero(tipoMediaProcurada);
+                break;
+            default:
+                Utilitarios.exibirMessagem("Tipo de mídia inválido, volte e tente novamente!");
+        }
     }
 
 }
