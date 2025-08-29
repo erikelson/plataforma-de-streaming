@@ -1,5 +1,6 @@
 package br.com.streaming.plataforma.utilitario;
 
+import br.com.streaming.plataforma.enums.GeneroMusica;
 import br.com.streaming.plataforma.excecoes.EntradaInvalidaException;
 
 import javax.swing.JOptionPane;
@@ -70,4 +71,18 @@ public class Utilitarios {
         }
     }
 
+    public static GeneroMusica perguntarGeneroMusical(String titulo, String perguntar) {
+        GeneroMusica generoEscolhido = null;
+        while (generoEscolhido == null) {
+            try {
+                generoEscolhido = (GeneroMusica) JOptionPane.showInputDialog(null, perguntar, titulo, JOptionPane.PLAIN_MESSAGE, null, GeneroMusica.values(), null);
+                if (generoEscolhido == null) {
+                    throw new EntradaInvalidaException("Você deve escolher um valor válido");
+                }
+            } catch (EntradaInvalidaException e) {
+                exibirMessagem(e.getMessage());
+            }
+        }
+        return generoEscolhido;
+    }
 }
