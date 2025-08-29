@@ -1,5 +1,8 @@
 package br.com.streaming.plataforma.utilitario;
 
+import br.com.streaming.plataforma.excecoes.UsuarioJaCadastradoException;
+import br.com.streaming.plataforma.usuario.GerenciarUsuario;
+
 public class Menu {
 
     public static void exibirMenuPrincipal(){
@@ -33,7 +36,11 @@ public class Menu {
             opcao = Utilitarios.inputOpcaoInt("Menu Usuario", "\n1 - Cadastrar usuário\n2 - Listar usuários\n3 - Remover usuário\n4 - Retornar para o menu principal\n\nEscolha uma opção: ");
             switch (opcao) {
                 case 1:
-                    System.out.println("Cadastar Usuário");
+                    try{
+                        GerenciarUsuario.cadastrarUsuario();
+                    } catch (UsuarioJaCadastradoException e) {
+                        Utilitarios.exibirMessagem(e.getMessage());
+                    }
                     break;
                 case 2:
                     System.out.println("Listar usuarios");
