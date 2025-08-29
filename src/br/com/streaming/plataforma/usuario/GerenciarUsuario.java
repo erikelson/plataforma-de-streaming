@@ -23,7 +23,7 @@ public class GerenciarUsuario {
 
 
     }
-    public static Usuario listarUsuarios() throws NenhumUsuarioCadastradoException {
+    public static void listarUsuarios() throws NenhumUsuarioCadastradoException {
         if (usuariosPorEmail.isEmpty()) {
             throw new NenhumUsuarioCadastradoException("Nenhum usuáro cadastrado.");
         }
@@ -33,19 +33,12 @@ public class GerenciarUsuario {
         }
         Utilitarios.exibirMessagem(usuarios);
     }
-    private static void getListarUsuarios(){
-        String usuarios = "";
-        for (Usuario usuario : usuariosPorEmail.values()) {
-            usuarios += "\nEmail -> " + usuario.getEmail() + "| Nome-> " + usuario.getNome();
-        }
-        System.out.println(usuarios);
-    }
+
     public static void removerUsuario() throws NenhumUsuarioCadastradoException, UsuarioNaoEncontradoException {
 
         if (usuariosPorEmail.isEmpty()) {
             throw new NenhumUsuarioCadastradoException("Nenhum usuário cadastrado.");
         }
-        getListarUsuarios();
         String email = Utilitarios.inputString("Remover usuário", "Digite o email que deseja remover:", true);
         if (!usuariosPorEmail.containsKey(email)) {
             throw new UsuarioNaoEncontradoException("Usuário com email " + email + " não encontrado!");
@@ -53,4 +46,4 @@ public class GerenciarUsuario {
             usuariosPorEmail.remove(email);
             Utilitarios.exibirMessagem("usuário com email: " + email + " Removido com sucesso! ");
     }
-}
+}}

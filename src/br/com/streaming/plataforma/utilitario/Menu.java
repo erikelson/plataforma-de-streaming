@@ -1,6 +1,10 @@
 package br.com.streaming.plataforma.utilitario;
 
+import br.com.streaming.plataforma.catalogo.Catalogo;
+import br.com.streaming.plataforma.catalogo.Musica;
+import br.com.streaming.plataforma.excecoes.NenhumUsuarioCadastradoException;
 import br.com.streaming.plataforma.excecoes.UsuarioJaCadastradoException;
+import br.com.streaming.plataforma.excecoes.UsuarioNaoEncontradoException;
 import br.com.streaming.plataforma.usuario.GerenciarUsuario;
 
 public class Menu {
@@ -11,11 +15,9 @@ public class Menu {
            opcao = Utilitarios.inputOpcaoInt("Menu Principal", "\n1 - Usuário\n2 - Catálogo de mídias\n3 - Gerenciar playlist\n4 - Sair\n\nEscolha uma opção: ");
            switch (opcao) {
                case 1:
-                   System.out.println("Exibir menu usuario");
                    exibirMenuUsuario();
                    break;
                case 2:
-                   System.out.println("Exibir menu catalogo");
                    exibirMenuCatalogo();
                    break;
                case 3:
@@ -43,10 +45,18 @@ public class Menu {
                     }
                     break;
                 case 2:
-                    System.out.println("Listar usuarios");
+                    try{
+                    GerenciarUsuario.listarUsuarios();
+                    } catch (NenhumUsuarioCadastradoException e) {
+                        Utilitarios.exibirMessagem(e.getMessage());
+                    }
                     break;
                 case 3:
-                    System.out.println("Remover usuario");
+                    try{
+                        GerenciarUsuario.removerUsuario();
+                    } catch (NenhumUsuarioCadastradoException | UsuarioNaoEncontradoException e) {
+                        Utilitarios.exibirMessagem(e.getMessage());
+                    }
                     break;
                 case 4:
                     System.out.println("Retornar para o menu principal");
@@ -64,10 +74,10 @@ public class Menu {
 
             switch (opcao) {
                 case 1:
-                    System.out.println("mídia");
+                    exibirSubMenuCadastrarMidia();
                     break;
                 case 2:
-                    System.out.println("Listar mídias");
+                    Catalogo.listarMidias();
                     break;
                 case 3:
                     System.out.println("Remover por titulo");
@@ -81,6 +91,26 @@ public class Menu {
                     Utilitarios.exibirMessagem("Opção inválida, tente novamente");
             }
         } while (opcao != 5);
+    }
+
+    public static void exibirSubMenuCadastrarMidia(){
+
+        int opcao = Utilitarios.inputOpcaoInt("Cadastrar mídia", "\nEscolha o tipo de mídia que deseja cadastrar\n\n  1 - Música\n  2 - Podcast\n  3 - Audiobook\n\nEscolha uma opção:");
+
+            switch (opcao) {
+                case 1:
+                    Musica.adicionarMusica();
+                    break;
+                case 2:
+                    System.out.println("add podcast");
+                    break;
+                case 3:
+                    System.out.println("add audiobook");
+                    break;
+                default:
+                    Utilitarios.exibirMessagem("Tipo de mídia inválido, volte e tente novamente!");
+            }
+
     }
 
 }
