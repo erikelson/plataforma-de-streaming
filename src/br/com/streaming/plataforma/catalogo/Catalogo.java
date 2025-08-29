@@ -21,11 +21,35 @@ public class Catalogo {
 
 
     public static void listarMidias() {
-        String lista = "";
+        int totalMusicas = 0;
+        int totalPodcasts = 0;
+        int totalAudiobook = 0;
+        String musicas = "Músicas:";
+        String podcasts = "Podcasts:";
+        String audiobooks = "Audiobooks:";
         for (Midia midia : midias) {
-            lista += "\n"+midia.toString();
+            if (midia instanceof Musica) {
+                musicas += "\n  " + midia;
+                totalMusicas++;
+            } else if (midia instanceof Podcast) {
+                podcasts += "\n  " + midia;
+                totalPodcasts++;
+            } else if (midia instanceof Audiobook) {
+                audiobooks += "\n  " + midia;
+                totalAudiobook++;
+            }
         }
-        Utilitarios.exibirMessagem(lista);
+        if (totalMusicas == 0) {
+            musicas = "Música:\n  Não existe música cadastrada";
+        }
+        if (totalPodcasts == 0) {
+            podcasts = "Podcast:\n  Não existe podcast cadastrado";
+        }
+        if (totalAudiobook == 0) {
+            audiobooks = "Audiobook:\n  Não existe audiobook cadastrado";
+        }
+        Utilitarios.exibirMessagem(musicas + "\n\n" + podcasts + "\n\n" + audiobooks);
+
     }
 
     public static boolean removerMidia(int tipo) throws NenhumaMidiaEncontradaException {
@@ -39,8 +63,8 @@ public class Catalogo {
         for (Midia midia : midias) {
             if (midia.getTitulo().equalsIgnoreCase(tituloRemover) && midia instanceof Musica && tipo == 1) {
                 remover = midia;
-            } //else if (midia.getTitulo().equalsIgnoreCase(tituloRemover) && midia instanceof Podcast && tipo == 2) {
-                //remover = midia;}
+            } else if (midia.getTitulo().equalsIgnoreCase(tituloRemover) && midia instanceof Podcast && tipo == 2) {
+                remover = midia;}
             else if (midia.getTitulo().equalsIgnoreCase(tituloRemover) && midia instanceof Audiobook && tipo == 3) {
                 remover = midia;
             }

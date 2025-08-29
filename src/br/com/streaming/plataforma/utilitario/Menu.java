@@ -3,6 +3,7 @@ package br.com.streaming.plataforma.utilitario;
 import br.com.streaming.plataforma.catalogo.Audiobook;
 import br.com.streaming.plataforma.catalogo.Catalogo;
 import br.com.streaming.plataforma.catalogo.Musica;
+import br.com.streaming.plataforma.catalogo.Podcast;
 import br.com.streaming.plataforma.excecoes.NenhumUsuarioCadastradoException;
 import br.com.streaming.plataforma.excecoes.UsuarioJaCadastradoException;
 import br.com.streaming.plataforma.excecoes.UsuarioNaoEncontradoException;
@@ -103,7 +104,7 @@ public class Menu {
                     Musica.adicionarMusica();
                     break;
                 case 2:
-                    System.out.println("add podcast");
+                    Podcast.adicionarPodcast();
                     break;
                 case 3:
                     Audiobook.adicionarAudiobook();
@@ -121,7 +122,7 @@ public class Menu {
                 Musica.removerMusica(tipoMediaRemover);
                 break;
             case 2:
-                //Podcast.removerPodcast(tipoMediaRemover);
+                Podcast.removerPodcast(tipoMediaRemover);
                 break;
             case 3:
                 Audiobook.removerAudiobook(tipoMediaRemover);

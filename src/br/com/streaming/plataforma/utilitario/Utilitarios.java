@@ -2,6 +2,7 @@ package br.com.streaming.plataforma.utilitario;
 
 import br.com.streaming.plataforma.enums.GeneroAudiobook;
 import br.com.streaming.plataforma.enums.GeneroMusica;
+import br.com.streaming.plataforma.enums.GeneroPodcast;
 import br.com.streaming.plataforma.excecoes.EntradaInvalidaException;
 
 import javax.swing.JOptionPane;
@@ -101,4 +102,20 @@ public class Utilitarios {
         }
         return generoEscolhido;
     }
+
+    public static GeneroPodcast perguntarGeneroPodcast(String titulo, String perguntar) {
+        GeneroPodcast generoEscolhido = null;
+        while (generoEscolhido == null) {
+            try {
+                generoEscolhido = (GeneroPodcast) JOptionPane.showInputDialog(null, perguntar, titulo, JOptionPane.PLAIN_MESSAGE, null, GeneroPodcast.values(), null);
+                if (generoEscolhido == null) {
+                    throw new EntradaInvalidaException("Você deve escolher um valor válido");
+                }
+            } catch (EntradaInvalidaException e) {
+                exibirMessagem(e.getMessage());
+            }
+        }
+        return generoEscolhido;
+    }
+
 }
