@@ -5,6 +5,7 @@ import br.com.streaming.plataforma.catalogo.Catalogo;
 import br.com.streaming.plataforma.catalogo.Musica;
 import br.com.streaming.plataforma.catalogo.Podcast;
 import br.com.streaming.plataforma.excecoes.NenhumUsuarioCadastradoException;
+import br.com.streaming.plataforma.excecoes.NenhumaMidiaEncontradaException;
 import br.com.streaming.plataforma.excecoes.UsuarioJaCadastradoException;
 import br.com.streaming.plataforma.excecoes.UsuarioNaoEncontradoException;
 import br.com.streaming.plataforma.usuario.GerenciarUsuario;
@@ -23,7 +24,7 @@ public class Menu {
                    exibirMenuCatalogo();
                    break;
                case 3:
-                   System.out.println("Exibir menu playlist");
+                   exibirMenuGerencimentoPlaylist();
                    break;
                case 4:
                    break;
@@ -149,4 +150,57 @@ public class Menu {
         }
     }
 
+
+         private void exibirMenuGerencimentoPlaylist() {
+        int opcao;
+        do {
+
+            opcao = Utilitarios.inputOpcaoInt("Gerenciamento Playlist", "\n  1 - Criar playlist\n  2 - Listar playlist\n  3 - Adicionar mídia na playlist\n  4 - Remover mídia da playlist\n  5 - Retornar menu usuário\n\nEscolha uma opção:");
+
+            switch (opcao) {
+                case 1:
+                    try {
+                        GerenciarUsuario.criarPlaylistPorUsuario();
+                    } catch (NenhumUsuarioCadastradoException | UsuarioNaoEncontradoException e) {
+                        Utilitarios.exibirMessagem(e.getMessage());
+                    }
+                    break;
+                case 2:
+                    try {
+                        GerenciarUsuario.listarPlaylistPorUsuario();
+                    } catch (NenhumUsuarioCadastradoException | UsuarioNaoEncontradoException |
+                             NenhumaPlaylistParaUsuarioException e) {
+                        Utilitarios.exibirMessagem(e.getMessage());
+                    }
+                    break;
+                case 3:
+                    try {
+                        GerenciarUsuario.adicionaMidiaNaPlaylist();
+                    } catch (UsuarioNaoEncontradoException | NenhumaPlaylistParaUsuarioException |
+                             NenhumaMidiaEncontradaException e) {
+                        Utilitarios.exibirMessagem(e.getMessage());
+                    }
+
+                    System.out.println("3");
+                    break;
+                case 4:
+                    try {
+                        GerenciarUsuario.removerMidiaNaPlaylist();
+                    } catch (UsuarioNaoEncontradoException | NenhumaPlaylistParaUsuarioException |
+                             NenhumaMidiaEncontradaException e) {
+                        Utilitarios.exibirMessagem(e.getMessage());
+                    }
+                    break;
+                case 5:
+                    break;
+                default:
+                    Utilitarios.exibirMessagem("Opção inválida, tente novamente");
+
+            }
+
+        } while (opcao != 5);
+    }
+
 }
+
+

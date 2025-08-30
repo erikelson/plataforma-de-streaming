@@ -3,7 +3,6 @@ package br.com.streaming.plataforma.catalogo;
 import br.com.streaming.plataforma.enums.GeneroMusica;
 import br.com.streaming.plataforma.excecoes.NenhumaMidiaEncontradaException;
 import br.com.streaming.plataforma.utilitario.Utilitarios;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,8 +17,9 @@ public class Catalogo {
 
         return midias.add(midia);
     }
-
-
+    public static Set<Midia> getMidias(){
+        return midias;
+    }
     public static void listarMidias() {
         int totalMusicas = 0;
         int totalPodcasts = 0;
