@@ -23,10 +23,10 @@ public class Podcast extends Midia {
 
     public static void adicionarPodcast() {
 
-        String titulo = Utilitarios.inputString("cadastrar podcast", "digite o título do podcast:", true);
-        String apresentador = Utilitarios.inputString("cadastrar podcast", "digite o nome do apresentador:", true);
+        String titulo = Utilitarios.inputString("Cadastrar podcast", "Digite o título do podcast:", true);
+        String apresentador = Utilitarios.inputString("Cadastrar podcast", "Digite o nome do apresentador:", false);
 
-        String convidado = Utilitarios.inputString("cadastrar podcast", "digite o nome do convidado(a):", true);
+        String convidado = Utilitarios.inputString("Cadastrar podcast", "Digite o nome do convidado(a):", false);
         int duracao = Utilitarios.inputOpcaoInt("Cadastrar Podcast", "Digite a durancao (em segundos):");
         GeneroPodcast generoEscolhido = Utilitarios.perguntarGeneroPodcast("Cadastrar Podcast", "Escolha o gênero do podcast:");
 
