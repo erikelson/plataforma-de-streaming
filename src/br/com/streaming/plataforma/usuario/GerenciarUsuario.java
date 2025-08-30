@@ -131,7 +131,7 @@ public class GerenciarUsuario {
         try {
             playlistEscolhida = listaPlaylists.get(opcaoEscolhida - 1);
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("Valor inválido!!!");
+            Utilitarios.exibirMessagem("Valor inválido, tente novamente!!!");
             return;
         }
         List<Midia> listaMidias = new ArrayList<>(midiasCadastradas);
@@ -149,7 +149,7 @@ public class GerenciarUsuario {
         try {
             midiaEscolhida = listaMidias.get(opcaoMusicaEscolhida - 1);
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("Valor inválido!!!");
+            Utilitarios.exibirMessagem("Valor inválido, tente novamente!!!");
             return;
         }
         boolean adicionar = playlistEscolhida.adicionarMidia(midiaEscolhida);
@@ -195,7 +195,7 @@ public class GerenciarUsuario {
         try {
             playlistEscolhida = listaPlaylists.get(opcaoEscolhida - 1);
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("Valor inválido!!!");
+            Utilitarios.exibirMessagem("Valor inválido, tente novamente!!!");
             return;
         }
         List<Midia> listaMidias = new ArrayList<>(midiasCadastradas);
@@ -213,7 +213,7 @@ public class GerenciarUsuario {
         try {
             midiaEscolhida = listaMidias.get(opcaoMusicaEscolhida - 1);
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("Valor inválido!!!");
+            Utilitarios.exibirMessagem("Valor inválido, tente novamente!!!");
             return;
         }
         boolean remover = playlistEscolhida.removerMidia(midiaEscolhida);

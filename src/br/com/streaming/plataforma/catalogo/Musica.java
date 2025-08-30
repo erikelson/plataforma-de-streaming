@@ -37,7 +37,6 @@ public class Musica extends Midia {
     }
     public static void procurarMusicaPorTitulo(String titulo){
         Catalogo midias = new Catalogo();
-        System.out.println(midias);
     }
 
     public static void procurarMusicaPorTituloArtistaGenero(int tipo) {

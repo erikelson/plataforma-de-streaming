@@ -59,7 +59,6 @@ public class Menu {
                     }
                     break;
                 case 4:
-                    System.out.println("Retornar para o menu principal");
                     break;
                 default:
                     Utilitarios.exibirMessagem("Opção inválida, tente novamente");

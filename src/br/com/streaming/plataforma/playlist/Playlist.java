@@ -32,12 +32,6 @@ public class Playlist {
         return listaMidias.remove(midia);
     }
 
-    public void listarMidiasDaPlaylist() {
-        for (Midia midia : listaMidias) {
-            System.out.println(midia);
-        }
-    }
-
     public String getMusicasDaPlaylist() {
         if (listaMidias.isEmpty()) {
             return "[Sem mídias]";
