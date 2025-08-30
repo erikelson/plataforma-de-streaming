@@ -12,7 +12,6 @@ public class Podcast extends Midia {
         this.convidado = convidado;
 
     }
-
     public String getApresentador() { return this.getArtista(); }
 
     public String getConvidado() { return convidado; }
@@ -51,7 +50,7 @@ public class Podcast extends Midia {
 
     @Override
     public String toString() {
-        return "Podcast --> Titulo: " + this.getTitulo() + " | Apresentador: " + this.getApresentador() + " | Convidado: " + this.getConvidado() + " | Tempo: " + this.getDuracaoFormatado() + " | Genero: " + this.getGenero();
+        return "Podcast --> Titulo: " + this.getTitulo() + " | Apresentador: " + this.getApresentador() + " | Convidado: " + this.getConvidado() + " | Tempo: " + this.getDuracaoFormatado(getDuracaoSegundos()) + " | Genero: " + this.getGenero();
 
     }
 

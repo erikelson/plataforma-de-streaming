@@ -1,6 +1,7 @@
 package br.com.streaming.plataforma.playlist;
 
 import br.com.streaming.plataforma.catalogo.Midia;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -37,6 +38,22 @@ public class Playlist {
         }
     }
 
+    public String getMusicasDaPlaylist() {
+        if (listaMidias.isEmpty()) {
+            return "[Sem mídias]";
+        }
+
+        String playlist = "";
+
+        int totalDuracao = 0;
+        for (Midia midia : listaMidias) {
+            playlist += "\n" + midia;
+            totalDuracao += midia.getDuracaoSegundos();
+        }
+        return playlist + "\n\nTempo total da playlist: " + Midia.getDuracaoFormatado(totalDuracao);
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
@@ -51,15 +68,6 @@ public class Playlist {
 
     @Override
     public String toString() {
-        String musicasDaPlaylist = "Músicas contida na playlist:\n";
-        if (listaMidias.size() > 0) {
-            for (Midia midia : listaMidias) {
-                musicasDaPlaylist += "\n" + midia;
-            }
-        } else {
-            musicasDaPlaylist = "[Sem músicas]";
-        }
-
-        return "Nome da playlist: " + nomeDaPlaylist + " - " + musicasDaPlaylist;
+        return "Nome da playlist: " + " - " + nomeDaPlaylist;
     }
 }

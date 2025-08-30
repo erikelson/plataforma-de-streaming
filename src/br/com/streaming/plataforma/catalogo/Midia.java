@@ -32,9 +32,9 @@ public abstract class Midia {
         return genero;
     }
 
-    public String getDuracaoFormatado() {
-        int horas = duracaoSegundos / 3600;
-        int resto = duracaoSegundos % 3600;
+    public static String getDuracaoFormatado(int duracao) {
+        int horas = duracao / 3600;
+        int resto = duracao % 3600;
         int minutos = resto / 60;
         int segundos = resto % 60;
         return String.format("%02d:%02d:%02d", horas, minutos, segundos);
@@ -54,6 +54,6 @@ public abstract class Midia {
 
     @Override
     public String toString() {
-        return "Título: "+ titulo + " | Artista: " + artista + " | Duracao: " + getDuracaoFormatado() +" | Gênero: "+ genero;
+        return "Título: "+ titulo + " | Artista: " + artista + " | Duracao: " + getDuracaoFormatado(getDuracaoSegundos()) +" | Gênero: "+ genero;
     }
 }

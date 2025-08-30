@@ -23,7 +23,7 @@ public class GerenciarUsuario {
     public static void cadastrarUsuario() throws UsuarioJaCadastradoException {
         String nome = Utilitarios.inputString("Cadastrar Usuário", "Digite o nome do usuário:", false);
         String email = Utilitarios.inputString("Cadastrar Usuário", "Digite o email:", true);
-        if(usuariosPorEmail.containsKey(email)){
+        if (usuariosPorEmail.containsKey(email)) {
             throw new UsuarioJaCadastradoException("Email: " + email + " já possui cadastro!");
         }
         Usuario usuarioCadastrado = new Usuario(nome, email);
@@ -32,6 +32,7 @@ public class GerenciarUsuario {
 
 
     }
+
     public static void listarUsuarios() throws NenhumUsuarioCadastradoException {
         if (usuariosPorEmail.isEmpty()) {
             throw new NenhumUsuarioCadastradoException("Nenhum usuáro cadastrado.");
@@ -54,10 +55,10 @@ public class GerenciarUsuario {
         } else {
             usuariosPorEmail.remove(email);
             Utilitarios.exibirMessagem("usuário com email: " + email + " Removido com sucesso! ");
+        }
     }
-}
 
- public static void criarPlaylistPorUsuario() throws UsuarioNaoEncontradoException, NenhumUsuarioCadastradoException {
+    public static void criarPlaylistPorUsuario() throws UsuarioNaoEncontradoException, NenhumUsuarioCadastradoException {
 
         if (usuariosPorEmail.isEmpty()) {
             throw new NenhumUsuarioCadastradoException("Nenhum usuário cadastrado.");
@@ -89,11 +90,11 @@ public class GerenciarUsuario {
         if (usuario.getPlaylist().isEmpty()) {
             throw new NenhumaPlaylistParaUsuarioException("Nenhuma playlist cadastrada para o usuário com email " + email);
         }
-
+        String playlistDoUsuario = "Usuario: " + usuario.getNome() + " | Email: " + usuario.getEmail();
         for (Playlist playlist : usuario.getPlaylist().values()) {
-            System.out.println(usuario.getPlaylist() + "Usuario: " + usuario.getNome() + " | Email: " + usuario.getEmail() + " | Playlist: " + playlist.getNomeDaPlaylist() + " --> " + playlist.getListaMidias());
-            System.out.println(playlist);
+            playlistDoUsuario +=  " \n[Playlist: " + playlist.getNomeDaPlaylist() + "]\n" + playlist.getMusicasDaPlaylist();
         }
+        Utilitarios.exibirMessagem(playlistDoUsuario);
     }
 
     public static void adicionaMidiaNaPlaylist() throws UsuarioNaoEncontradoException, NenhumaPlaylistParaUsuarioException, NenhumaMidiaEncontradaException {

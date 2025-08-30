@@ -53,7 +53,7 @@ public class Audiobook extends Midia{
 
     @Override
     public String toString() {
-        return "Audiobook --> Titulo: " + this.getTitulo() + " | Autor: " + this.getAutor() + " | Tempo: " + this.getDuracaoFormatado() + " | Genero: " + this.getGenero() + " | Narrado(a): " + this.getNarrador();
+        return "Audiobook --> Titulo: " + this.getTitulo() + " | Autor: " + this.getAutor() + " | Tempo: " + this.getDuracaoFormatado(getDuracaoSegundos()) + " | Genero: " + this.getGenero() + " | Narrado(a): " + this.getNarrador();
     }
 
 }

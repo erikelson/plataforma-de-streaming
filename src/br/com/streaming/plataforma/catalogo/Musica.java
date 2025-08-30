@@ -56,6 +56,6 @@ public class Musica extends Midia {
 
     @Override
     public String toString() {
-        return "Música --> Titulo: " + this.getTitulo() + " | Artista: " + this.getArtista() + " | Duração: " + this.getDuracaoFormatado() + " | Genero: " + this.getGenero();
+        return "Música --> Titulo: " + this.getTitulo() + " | Artista: " + this.getArtista() + " | Duração: " + this.getDuracaoFormatado(getDuracaoSegundos()) + " | Genero: " + this.getGenero();
     }
 }
