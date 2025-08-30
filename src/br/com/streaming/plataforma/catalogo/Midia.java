@@ -54,6 +54,6 @@ public abstract class Midia {
 
     @Override
     public String toString() {
-        return "Título: "+ titulo + " | Artista: " + artista + " | Duracao: " + getDuracaoFormatado(getDuracaoSegundos()) +" | Gênero: "+ genero;
+        return "Título: " + titulo + " | Artista: " + artista + " | Duracao: " + getDuracaoFormatado(getDuracaoSegundos()) + " | Gênero: " + genero;
     }
 }

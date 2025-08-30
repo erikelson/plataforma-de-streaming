@@ -4,7 +4,7 @@ import br.com.streaming.plataforma.enums.GeneroAudiobook;
 import br.com.streaming.plataforma.excecoes.NenhumaMidiaEncontradaException;
 import br.com.streaming.plataforma.utilitario.Utilitarios;
 
-public class Audiobook extends Midia{
+public class Audiobook extends Midia {
     private String narrador;
 
     public Audiobook(String titulo, String autor, int duracaoSegundos, Enum<?> genero, String narrador) {
@@ -53,7 +53,7 @@ public class Audiobook extends Midia{
 
     @Override
     public String toString() {
-        return "Audiobook --> Titulo: " + this.getTitulo() + " | Autor: " + this.getAutor() + " | Tempo: " + this.getDuracaoFormatado(getDuracaoSegundos()) + " | Genero: " + this.getGenero() + " | Narrado(a): " + this.getNarrador();
+        return "Audiobook --> Titulo: " + this.getTitulo() + " | Autor: " + this.getAutor() + " | Tempo: " + getDuracaoFormatado(getDuracaoSegundos()) + " | Genero: " + this.getGenero() + " | Narrado(a): " + this.getNarrador();
     }
 
 }

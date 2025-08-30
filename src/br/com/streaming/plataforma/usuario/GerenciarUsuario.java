@@ -92,7 +92,7 @@ public class GerenciarUsuario {
         }
         String playlistDoUsuario = "Usuario: " + usuario.getNome() + " | Email: " + usuario.getEmail();
         for (Playlist playlist : usuario.getPlaylist().values()) {
-            playlistDoUsuario +=  " \n[Playlist: " + playlist.getNomeDaPlaylist() + "]\n" + playlist.getMusicasDaPlaylist();
+            playlistDoUsuario += " \n[Playlist: " + playlist.getNomeDaPlaylist() + "]\n" + playlist.getMidiaDaPlaylist();
         }
         Utilitarios.exibirMessagem(playlistDoUsuario);
     }

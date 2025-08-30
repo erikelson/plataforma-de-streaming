@@ -1,43 +1,43 @@
-package br.com.streaming.plataforma.usuario;
+    package br.com.streaming.plataforma.usuario;
 
-import br.com.streaming.plataforma.playlist.Playlist;
+    import br.com.streaming.plataforma.playlist.Playlist;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+    import java.util.HashMap;
+    import java.util.Map;
+    import java.util.Objects;
 
-public class Usuario {
-    private String nome;
-    private String email;
-    private Map<String, Playlist> playlist;
+    public class Usuario {
+        private String nome;
+        private String email;
+        private Map<String, Playlist> playlist;
 
-    public Usuario(String nome, String email){
-        this.nome = nome;
-        this.email = email;
-        this.playlist = new HashMap<>();
+        public Usuario(String nome, String email) {
+            this.nome = nome;
+            this.email = email;
+            this.playlist = new HashMap<>();
+        }
+
+        public Map<String, Playlist> getPlaylist() {
+            return playlist;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public String getNome() {
+            return nome;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (o == null || getClass() != o.getClass()) return false;
+            Usuario usuario = (Usuario) o;
+            return Objects.equals(nome, usuario.nome) && Objects.equals(email, usuario.email);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(nome, email);
+        }
     }
-
-    public Map<String, Playlist> getPlaylist() {
-        return playlist;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Usuario usuario = (Usuario) o;
-        return Objects.equals(nome, usuario.nome) && Objects.equals(email, usuario.email);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(nome, email);
-    }
-}

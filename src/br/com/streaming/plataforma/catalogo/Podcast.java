@@ -7,14 +7,19 @@ import br.com.streaming.plataforma.utilitario.Utilitarios;
 public class Podcast extends Midia {
     private final String convidado;
 
-    public Podcast(String titulo, String apresentador, int duracaoSegundos, GeneroPodcast genero, String convidado){
+    public Podcast(String titulo, String apresentador, int duracaoSegundos, GeneroPodcast genero, String convidado) {
         super(titulo, apresentador, duracaoSegundos, genero);
         this.convidado = convidado;
 
     }
-    public String getApresentador() { return this.getArtista(); }
 
-    public String getConvidado() { return convidado; }
+    public String getApresentador() {
+        return this.getArtista();
+    }
+
+    public String getConvidado() {
+        return convidado;
+    }
 
     public static void adicionarPodcast() {
 
@@ -33,8 +38,8 @@ public class Podcast extends Midia {
         }
     }
 
-    public static void removerPodcast(int tipo){
-        try{
+    public static void removerPodcast(int tipo) {
+        try {
             boolean removido = Catalogo.removerMidia(tipo);
             if (removido) {
                 Utilitarios.exibirMessagem("Podcast excluída do catálogo!!!");
