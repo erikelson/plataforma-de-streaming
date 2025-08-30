@@ -1,5 +1,7 @@
 package br.com.streaming.plataforma.usuario;
 
+import br.com.streaming.plataforma.playlist.Playlist;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -7,7 +9,7 @@ import java.util.Objects;
 public class Usuario {
     private String nome;
     private String email;
-    private Map<String,String> playlist;
+    private Map<String, Playlist> playlist;
 
     public Usuario(String nome, String email){
         this.nome = nome;
@@ -15,7 +17,7 @@ public class Usuario {
         this.playlist = new HashMap<>();
     }
 
-    public Map<String, String> getPlaylist() {
+    public Map<String, Playlist> getPlaylist() {
         return playlist;
     }
 

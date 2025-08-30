@@ -6,14 +6,14 @@ import java.util.List;
 import java.util.Objects;
 
 public class Playlist {
-    private String nomeDaPlaylist;
-    private List<Midia> listaMidias;
+    private final String nomeDaPlaylist;
+    private final List<Midia> listaMidias;
 
-    public Playlist(String nomePlaylist) {
-        this.nomeDaPlaylist = nomePlaylist;
+    public Playlist(String nomeDaPlaylist) {
+        this.nomeDaPlaylist = nomeDaPlaylist;
         this.listaMidias = new ArrayList<>();
-
     }
+
     public String getNomeDaPlaylist() {
         return nomeDaPlaylist;
     }
@@ -51,7 +51,15 @@ public class Playlist {
 
     @Override
     public String toString() {
-        return "Playlist{" + "nomeDaPlaylist='" + nomeDaPlaylist + '\'' + ", listaMidias=" + listaMidias + '}';
+        String musicasDaPlaylist = "Músicas contida na playlist:\n";
+        if (listaMidias.size() > 0) {
+            for (Midia midia : listaMidias) {
+                musicasDaPlaylist += "\n" + midia;
+            }
+        } else {
+            musicasDaPlaylist = "[Sem músicas]";
+        }
+
+        return "Nome da playlist: " + nomeDaPlaylist + " - " + musicasDaPlaylist;
     }
 }
-
