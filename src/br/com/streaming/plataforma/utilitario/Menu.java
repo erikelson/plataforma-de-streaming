@@ -172,7 +172,7 @@ public class Menu {
                 case 3:
                     try {
                         GerenciarUsuario.adicionaMidiaNaPlaylist();
-                    } catch (UsuarioNaoEncontradoException | NenhumaPlaylistParaUsuarioException |
+                    } catch (EntradaInvalidaException | UsuarioNaoEncontradoException | NenhumaPlaylistParaUsuarioException |
                              NenhumaMidiaEncontradaException e) {
                         Utilitarios.exibirMessagem(e.getMessage());
                     }
@@ -180,7 +180,7 @@ public class Menu {
                 case 4:
                     try {
                         GerenciarUsuario.removerMidiaNaPlaylist();
-                    } catch (UsuarioNaoEncontradoException | NenhumaPlaylistParaUsuarioException |
+                    } catch (EntradaInvalidaException | UsuarioNaoEncontradoException | NenhumaPlaylistParaUsuarioException |
                              NenhumaMidiaEncontradaException e) {
                         Utilitarios.exibirMessagem(e.getMessage());
                     }

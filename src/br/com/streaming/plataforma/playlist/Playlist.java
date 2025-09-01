@@ -19,7 +19,7 @@ public class Playlist {
         return nomeDaPlaylist;
     }
 
-    public List<Midia> getListaMidias() {
+    public List<Midia> getListaMidiasDaPlaylist() {
         return listaMidias;
     }
 

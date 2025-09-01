@@ -2,11 +2,7 @@ package br.com.streaming.plataforma.usuario;
 
 import br.com.streaming.plataforma.catalogo.Catalogo;
 import br.com.streaming.plataforma.catalogo.Midia;
-import br.com.streaming.plataforma.excecoes.NenhumUsuarioCadastradoException;
-import br.com.streaming.plataforma.excecoes.NenhumaMidiaEncontradaException;
-import br.com.streaming.plataforma.excecoes.UsuarioJaCadastradoException;
-import br.com.streaming.plataforma.excecoes.UsuarioNaoEncontradoException;
-import br.com.streaming.plataforma.excecoes.NenhumaPlaylistParaUsuarioException;
+import br.com.streaming.plataforma.excecoes.*;
 import br.com.streaming.plataforma.playlist.Playlist;
 import br.com.streaming.plataforma.utilitario.Utilitarios;
 
@@ -125,7 +121,7 @@ public class GerenciarUsuario {
 
         int opcaoEscolhida = Utilitarios.inputOpcaoInt("Adicionar música na playlist", opcoes + "\n\nEscolha uma opção:");
         if (opcaoEscolhida < 1 || opcaoEscolhida > listaPlaylists.size()) {
-            Utilitarios.exibirMessagem("Opção inválida, tente novamente!");
+            throw new EntradaInvalidaException("Opção inválida, tente novamente!");
         }
         Playlist playlistEscolhida;
         try {
@@ -142,7 +138,7 @@ public class GerenciarUsuario {
         }
         int opcaoMusicaEscolhida = Utilitarios.inputOpcaoInt("Adicionar música na playlist", escolhaMusicas + "\n\nEscolha uma opção:");
         if (opcaoMusicaEscolhida < 1 || opcaoMusicaEscolhida > listaMidias.size()) {
-            Utilitarios.exibirMessagem("Opção inválida, tente novamente!");
+            throw new EntradaInvalidaException("Opção inválida, tente novamente!");
         }
 
         Midia midiaEscolhida;
@@ -182,6 +178,9 @@ public class GerenciarUsuario {
         }
 
         List<Playlist> listaPlaylists = new ArrayList<>(usuario.getPlaylist().values());
+        if (listaPlaylists.isEmpty()){
+            throw new NenhumaPlaylistParaUsuarioException("Nenhuma playlist para usuario!");
+        }
         String opcoes = "Escolha uma playlist:\n";
         for (int i = 0; i < listaPlaylists.size(); i++) {
             opcoes += "\n" + (i + 1) + " - " + listaPlaylists.get(i).getNomeDaPlaylist();
@@ -189,7 +188,7 @@ public class GerenciarUsuario {
 
         int opcaoEscolhida = Utilitarios.inputOpcaoInt("Remover música na playlist", opcoes + "\n\nEscolha uma opção:");
         if (opcaoEscolhida < 1 || opcaoEscolhida > listaPlaylists.size()) {
-            Utilitarios.exibirMessagem("Opção inválida, tente novamente!");
+            throw new EntradaInvalidaException("Opção inválida, tente novamente!");
         }
         Playlist playlistEscolhida;
         try {
@@ -198,30 +197,31 @@ public class GerenciarUsuario {
             Utilitarios.exibirMessagem("Valor inválido, tente novamente!!!");
             return;
         }
-        List<Midia> listaMidias = new ArrayList<>(midiasCadastradas);
-        String escolhaMusicas = "";
-        for (int i = 0; i < listaMidias.size(); i++) {
-            escolhaMusicas += "\n" + (i + 1) + " - " + listaMidias.get(i).toString();
-
-        }
-        int opcaoMusicaEscolhida = Utilitarios.inputOpcaoInt("Remover música na playlist", escolhaMusicas + "\n\nEscolha uma opção:");
-        if (opcaoMusicaEscolhida < 1 || opcaoMusicaEscolhida > listaMidias.size()) {
-            Utilitarios.exibirMessagem("Opção inválida, tente novamente!");
+        List<Midia> midiasDaPlaylist = playlistEscolhida.getListaMidiasDaPlaylist();
+        if (midiasDaPlaylist.isEmpty()) {
+            throw new NenhumaMidiaEncontradaException("Nenhuma mídia na playlist");
         }
 
-        Midia midiaEscolhida;
-        try {
-            midiaEscolhida = listaMidias.get(opcaoMusicaEscolhida - 1);
-        } catch (IndexOutOfBoundsException e) {
-            Utilitarios.exibirMessagem("Valor inválido, tente novamente!!!");
-            return;
+
+        String escolhaMusicas = "Escolha a mídia que deseja remover:\n";
+        for (int i = 0; i < midiasDaPlaylist.size(); i++) {
+            escolhaMusicas += "\n" + (i + 1) + " - " + midiasDaPlaylist.get(i).toString();
         }
-        boolean remover = playlistEscolhida.removerMidia(midiaEscolhida);
-        if (remover) {
-            Utilitarios.exibirMessagem("Música removida com sucesso!");
+
+        int opcaoMusicaEscolhida = Utilitarios.inputOpcaoInt("Remover música", escolhaMusicas + "\n\nEscolha uma opção:");
+        if (opcaoMusicaEscolhida < 1 || opcaoMusicaEscolhida > midiasDaPlaylist.size()) {
+            throw new EntradaInvalidaException("Opção inválida, tente novamente!");
+        }
+
+        Midia midiaParaRemover = midiasDaPlaylist.get(opcaoMusicaEscolhida - 1);
+        boolean removido = playlistEscolhida.removerMidia(midiaParaRemover);
+
+        if (removido) {
+            Utilitarios.exibirMessagem("Mídia removida com sucesso!");
         } else {
-            Utilitarios.exibirMessagem("Música não removida!");
+            Utilitarios.exibirMessagem("Erro ao remover mídia!");
         }
+
     }
 
 }
