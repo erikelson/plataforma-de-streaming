@@ -17,7 +17,7 @@ public class Audiobook extends Midia {
     }
 
     public String getAutor() {
-        return Midia.getArtista();
+        return getArtista();
     }
 
     public static void adicionarAudiobook() {

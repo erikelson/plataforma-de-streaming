@@ -112,7 +112,7 @@ public class Catalogo {
             for (Midia midia : midias) {
                 if (midia.getTitulo().equalsIgnoreCase(buscarMusica) && midia instanceof Musica && tipo == 1) {
                     midiaEncontrada += "\n" + midia;
-                } else if (Midia.getArtista().equalsIgnoreCase(buscarMusica) && midia instanceof Musica && tipo == 2) {
+                } else if (midia.getArtista().equalsIgnoreCase(buscarMusica) && midia instanceof Musica && tipo == 2) {
                     midiaEncontrada += "\n" + midia;
                 }
             }

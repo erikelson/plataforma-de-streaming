@@ -5,7 +5,7 @@ import java.util.Objects;
 public abstract class Midia {
 
     private String titulo;
-    private static String artista;
+    private String artista;
     private int duracaoSegundos;
     private Enum<?> genero;
 
@@ -20,7 +20,7 @@ public abstract class Midia {
         return titulo;
     }
 
-    public static String getArtista() {
+    public String getArtista() {
         return artista;
     }
 
@@ -54,6 +54,6 @@ public abstract class Midia {
 
     @Override
     public String toString() {
-        return "Título: " + titulo + " | Artista: " + artista + " | Duracao: " + getDuracaoFormatado(getDuracaoSegundos()) + " | Gênero: " + genero;
+        return "Título: " + getTitulo() + " | Artista: " + getArtista() + " | Duracao: " + getDuracaoFormatado(getDuracaoSegundos()) + " | Gênero: " + getGenero();
     }
 }

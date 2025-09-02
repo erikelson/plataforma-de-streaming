@@ -12,7 +12,7 @@ public class Musica extends Midia {
 
     public static void adicionarMusica() {
         String titulo = Utilitarios.inputString("Cadastrar Música", "Digite o título da música:", true);
-        String artista = Utilitarios.inputString("Cadastrar Música", "Digite o nome do artista:", false);
+        String artista = Utilitarios.inputString("Cadastrar Música", "Digite o nome do artista:", true);
         int duracao = Utilitarios.inputOpcaoInt("Cadastrar Música", "Digite a durancao (em segundos):");
         GeneroMusica generoEscolhido = Utilitarios.perguntarGeneroMusical("Cadastrar Música", "Escolha o gênero da música:");
         Musica musica = new Musica(titulo, artista, duracao, generoEscolhido);
