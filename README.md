@@ -45,3 +45,9 @@ O código é organizado em diferentes pacotes e classes conforme a funcionalidad
 
    ```bash
    git clone https://github.com/erikelson/plataforma-de-streaming.git
+
+## Apresentação do Projeto
+
+Você pode acessar a apresentação da análise comparativa entre o código gerado pelo ChatGPT e este código no link abaixo:
+
+🔗 [Clique aqui para ver a apresentação da análise](https://www.canva.com/design/DAGxo-5osC4/HA_czOfq6VlrgNq4cxi4KA/view)
